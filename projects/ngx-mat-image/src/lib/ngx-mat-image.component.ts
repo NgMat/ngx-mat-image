@@ -1,19 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'lib-ngx-mat-image',
-  template: `
-    <p>
-      ngx-mat-image works!
-    </p>
-  `,
-  styles: []
+  // tslint:disable-next-line:component-selector
+  selector: 'ngx-mat-image',
+  templateUrl: './ngx-mat-image.component.html',
+  styleUrls: ['/ngx-mat-image.component.css']
 })
 export class NgxMatImageComponent implements OnInit {
 
-  constructor() { }
+  // tslint:disable-next-line:no-input-rename
+  @Input('width') width: string;
+  // tslint:disable-next-line:no-input-rename
+  @Input('height') height: string;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
+  cardStyle() {
+    return {
+      width: this.width,
+      height: this.height
+    };
+  }
 }
