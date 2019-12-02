@@ -2,5 +2,159 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "ngx-mat-image": {
+      "projectType": "library",
+      "root": "projects/ngx-mat-image",
+      "sourceRoot": "projects/ngx-mat-image/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-mat-image/tsconfig.lib.json",
+            "project": "projects/ngx-mat-image/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-mat-image/src/test.ts",
+            "tsConfig": "projects/ngx-mat-image/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-mat-image/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-mat-image/tsconfig.lib.json",
+              "projects/ngx-mat-image/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-mat-image-showcase": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/ngx-mat-image-showcase",
+      "sourceRoot": "projects/ngx-mat-image-showcase/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ngx-mat-image-showcase",
+            "index": "projects/ngx-mat-image-showcase/src/index.html",
+            "main": "projects/ngx-mat-image-showcase/src/main.ts",
+            "polyfills": "projects/ngx-mat-image-showcase/src/polyfills.ts",
+            "tsConfig": "projects/ngx-mat-image-showcase/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/ngx-mat-image-showcase/src/favicon.ico",
+              "projects/ngx-mat-image-showcase/src/assets"
+            ],
+            "styles": [
+              "projects/ngx-mat-image-showcase/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/ngx-mat-image-showcase/src/environments/environment.ts",
+                  "with": "projects/ngx-mat-image-showcase/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ngx-mat-image-showcase:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ngx-mat-image-showcase:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ngx-mat-image-showcase:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-mat-image-showcase/src/test.ts",
+            "polyfills": "projects/ngx-mat-image-showcase/src/polyfills.ts",
+            "tsConfig": "projects/ngx-mat-image-showcase/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-mat-image-showcase/karma.conf.js",
+            "assets": [
+              "projects/ngx-mat-image-showcase/src/favicon.ico",
+              "projects/ngx-mat-image-showcase/src/assets"
+            ],
+            "styles": [
+              "projects/ngx-mat-image-showcase/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-mat-image-showcase/tsconfig.app.json",
+              "projects/ngx-mat-image-showcase/tsconfig.spec.json",
+              "projects/ngx-mat-image-showcase/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/ngx-mat-image-showcase/e2e/protractor.conf.js",
+            "devServerTarget": "ngx-mat-image-showcase:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ngx-mat-image-showcase:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "defaultProject": "ngx-mat-image"
 }

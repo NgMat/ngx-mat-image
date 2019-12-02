@@ -17,7 +17,15 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-mat-image": [
+        "dist/ngx-mat-image"
+      ],
+      "ngx-mat-image/*": [
+        "dist/ngx-mat-image/*"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,
